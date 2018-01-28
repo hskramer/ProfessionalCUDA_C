@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
-#include <ctime>
+#include <string.h>
+#include <time.h>
 #include <cuda_runtime.h>
 
 
@@ -480,10 +480,12 @@ int main(int argc, char **argv)
 	int *tmp = (int *)malloc(bytes);
 
 	// initialize the array
+	time_t	t;
+	srand(time(&t));
 	for (int i = 0; i < size; i++)
 	{
 		// mask off high 2 bytes to force max number to 255
-		h_idata[i] = (int)(rand() & 0xFF);
+		h_idata[i] = (int)(rand() % 100);
 	}
 
 	memcpy(tmp, h_idata, bytes);

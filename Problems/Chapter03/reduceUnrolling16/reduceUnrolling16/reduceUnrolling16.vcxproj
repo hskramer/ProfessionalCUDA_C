@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B3081298-9E5E-40BF-B10B-906B8CA39303}</ProjectGuid>
-    <RootNamespace>Reduce</RootNamespace>
+    <ProjectGuid>{A6CA3206-8B45-432A-961E-CAB903CCA904}</ProjectGuid>
+    <RootNamespace>reduceUnrolling16</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -162,7 +162,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="reduction.cu" />
+    <CudaCompile Include="unroll16.cu" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B3081298-9E5E-40BF-B10B-906B8CA39303}</ProjectGuid>
-    <RootNamespace>Reduce</RootNamespace>
+    <ProjectGuid>{187B09E2-F1DC-48DA-893C-3B6A7F471445}</ProjectGuid>
+    <RootNamespace>reduceComplete8Sync</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -162,7 +162,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="reduction.cu" />
+    <CudaCompile Include="reduce8sync.cu" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
