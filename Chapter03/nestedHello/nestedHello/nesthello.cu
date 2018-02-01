@@ -15,7 +15,7 @@ void checkCuda(cudaError_t result)
 #endif
 }
 
-__global__ void nestedHelloWorld(int const iSize, int iDepth)
+__global__ void nestedHelloWorld(int iSize, int iDepth)
 {
 	int tid = threadIdx.x;
 	printf("Recursion= %d: Hello World from thread %d block %d\n", iDepth, tid, blockIdx.x);

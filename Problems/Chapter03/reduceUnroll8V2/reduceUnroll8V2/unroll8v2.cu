@@ -5,7 +5,7 @@
 #include <cuda_runtime.h>
 
 /*
-This version is slower than the simple unroll. Memory throughput was almost 10% slower, stalled warps where 13% higher. Achieved occupancy was exactly the  
+This version is slower than the simple unroll. Memory throughput was almost 10% slower, stalled warps where 13% higher. Achieved occupancy was exactly the
 same making this a good example of why achieving the highest occupancy does not translate into the best performance.
 */
 
@@ -138,7 +138,7 @@ int main(int argc, char **argv)
 	checkCuda(cudaMalloc((void **)&d_idata, bytes));
 	checkCuda(cudaMalloc((void **)&d_odata, grid.x * sizeof(int)));
 
-	cpusum = cpuSumRecursive(tmp, size);
+	int cpusum = cpuSumRecursive(tmp, size);
 	printf_s("cpu_sum: %d\n", cpusum);
 
 	checkCuda(cudaMemcpy(d_idata, h_idata, bytes, cudaMemcpyHostToDevice));

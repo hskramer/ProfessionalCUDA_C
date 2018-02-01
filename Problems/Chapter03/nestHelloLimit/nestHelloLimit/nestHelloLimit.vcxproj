@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AF775FD0-EAF2-4DFA-BA3E-ECD542CDDCAD}</ProjectGuid>
-    <RootNamespace>nestedHello</RootNamespace>
+    <ProjectGuid>{4C7719F3-F308-4758-9989-AE16BF4C30F5}</ProjectGuid>
+    <RootNamespace>nestHelloLimit</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -106,10 +106,9 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
       <CodeGeneration>compute_50,sm_50</CodeGeneration>
       <Optimization>InheritFromHost</Optimization>
-      <AdditionalCompilerOptions>-rdc=true </AdditionalCompilerOptions>
-      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
     <CudaLink>
       <Optimization>InheritFromProject</Optimization>
@@ -156,17 +155,16 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
-      <CodeGeneration>compute_50,sm_50</CodeGeneration>
-      <Optimization>O2</Optimization>
-      <AdditionalCompilerOptions>-rdc=true </AdditionalCompilerOptions>
       <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
+      <CodeGeneration>compute_50,sm_50</CodeGeneration>
+      <Optimization>InheritFromHost</Optimization>
     </CudaCompile>
     <CudaLink>
-      <Optimization>O2</Optimization>
+      <Optimization>InheritFromProject</Optimization>
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="nesthello.cu" />
+    <CudaCompile Include="hellolimit.cu" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
