@@ -84,7 +84,7 @@ __global__ void warmup(float *out, float *in, const int nx, const int ny)
 	}
 }
 
-// case 0 copy kernel: access data in rows
+// case 0 copy kernel: access data in rows, simulates the same amount of memory  ops as transpose with coalesced access
 __global__ void copyRow(float *out, float *in, const int nx, const int ny)
 {
 	unsigned int ix = blockDim.x * blockIdx.x + threadIdx.x;
@@ -96,7 +96,7 @@ __global__ void copyRow(float *out, float *in, const int nx, const int ny)
 	}
 }
 
-// case 1 copy kernel: access data in columns
+// case 1 copy kernel: access data in columns, simulates the same amount of memory  ops as transpose with strided access
 __global__ void copyCol(float *out, float *in, const int nx, const int ny)
 {
 	unsigned int ix = blockDim.x * blockIdx.x + threadIdx.x;
