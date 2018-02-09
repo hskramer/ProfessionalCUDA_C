@@ -19,11 +19,14 @@ int main(int argc, char** argv)
 {
 	// set up device 
 	int  dev = 0;
+	int  lShft = 22;
 
 	checkCuda(cudaSetDevice(dev));
 
+	if (argc > 1)	lShft = atoi(argv[1]);
+
 	// memory size
-	unsigned int  isize = 1 << 22;
+	unsigned int  isize = 1 << lShft;
 	unsigned int  nbytes = isize * sizeof(float);
 
 	//get device information
