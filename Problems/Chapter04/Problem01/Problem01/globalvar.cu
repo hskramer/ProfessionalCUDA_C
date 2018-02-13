@@ -25,7 +25,7 @@ __device__ float devData[5];
 
 __global__ void checkGlobalVariable()
 {
-	int tid = blockIdx.x * blockDim.x + threadIdx.x;
+	int tid = threadIdx.x;
 	// display value before kernel change 
 	printf("The device value: %f and thread id: %d\n", devData[tid], tid);
 	if (tid < 5)
