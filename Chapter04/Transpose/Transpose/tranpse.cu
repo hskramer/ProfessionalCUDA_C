@@ -144,7 +144,7 @@ __global__ void transposeUnroll4Row(float *out, float *in, const int nx, const i
 	if (ix + 3 * blockDim.x < nx && iy < ny)
 	{
 		out[to] = in[ti];
-		out[to + ny * blockDim.x] = in[ti + blockDim.x];
+		out[to + ny * blockDim.x]	  = in[ti + blockDim.x];
 		out[to + ny * 2 * blockDim.x] = in[ti + 2 * blockDim.x];
 		out[to + ny * 3 * blockDim.x] = in[ti + 3 * blockDim.x];
 	}
@@ -156,15 +156,15 @@ __global__ void transposeUnroll4Col(float *out, float *in, const int nx, const i
 	unsigned int ix = blockDim.x * blockIdx.x * 4 + threadIdx.x;
 	unsigned int iy = blockDim.y * blockIdx.y + threadIdx.y;
 
-	unsigned int ti = iy * nx + ix; // access in rows
-	unsigned int to = ix * ny + iy; // access in columns
+	unsigned int to = iy * nx + ix; // access in rows
+	unsigned int ti = ix * ny + iy; // access in columns
 
 	if (ix + 3 * blockDim.x < nx && iy < ny)
 	{
-		out[ti] = in[to];
-		out[ti + blockDim.x] = in[to + blockDim.x * ny];
-		out[ti + 2 * blockDim.x] = in[to + 2 * blockDim.x * ny];
-		out[ti + 3 * blockDim.x] = in[to + 3 * blockDim.x * ny];
+		out[to] = in[ti];
+		out[to + blockDim.x]	 = in[ti + ny * blockDim.x];
+		out[to + 2 * blockDim.x] = in[ti + ny * 2 * blockDim.x];
+		out[to + 3 * blockDim.x] = in[ti + ny * 3 * blockDim.x];
 	}
 }
 
@@ -331,7 +331,7 @@ int main(int argc, char **argv)
 	checkCuda(cudaGetLastError());
 
 	// check kernel results
-	if (iKernel > 1)
+	if (iKernel >= 0)
 	{
 		checkCuda(cudaMemcpy(gpuRef, d_C, nBytes, cudaMemcpyDeviceToHost));
 		checkResult(hostRef, gpuRef, nx * ny);
