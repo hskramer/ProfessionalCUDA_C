@@ -5,7 +5,9 @@
 
 /* I typed most of these in from the versions given in the book the change
 *  in performance of the kerneks using shared memory was negligable and
-*  actually increased in some cases.
+*  actually increased in some cases. This was probably due to the speed
+*  of my global memory unlike the author my throughput never changed much
+*  regardless of which version I used.
 */
 
 
