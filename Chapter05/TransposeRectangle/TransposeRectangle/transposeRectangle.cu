@@ -8,7 +8,7 @@
 * optimizations, including shared memory, unrolling, and memory padding.
 */
 
-// Some kernels assume square blocks
+
 #define BDIMX 32
 #define BDIMY 16
 
