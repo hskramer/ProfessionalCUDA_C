@@ -46,6 +46,14 @@ __inline__ __device__ int warpReduce(int localSum)
 	return localSum;
 }
 
+__inline__ __device__ int warpReduceFor(int localSum)
+{
+	for (int i = 16; i > 0; i >>= 1)
+		localSum += __shfl_down(localSum, i);
+
+	return localSum;
+}
+
 __global__ void reduceShfl(int *g_idata, int *g_odata, unsigned int n)
 {
 	// shared memory for each warp sum
@@ -61,7 +69,7 @@ __global__ void reduceShfl(int *g_idata, int *g_odata, unsigned int n)
 	int warpIdx = threadIdx.x / warpSize;
 
 	// blcok-wide warp reduce
-	int localSum = warpReduce(g_idata[idx]);
+	int localSum = warpReduceFor(g_idata[idx]); // just testing warpReduceFor
 
 	// save warp sum to shared memory
 	if (laneIdx == 0) smem[warpIdx] = localSum;
@@ -93,7 +101,7 @@ int main(int argc, char **argv)
 	bool bResult = false;
 
 	// initialization
-	int lShft = 18;
+	int lShft = 20;
 
 	if (argc > 1) lShft = atoi(argv[1]);
 

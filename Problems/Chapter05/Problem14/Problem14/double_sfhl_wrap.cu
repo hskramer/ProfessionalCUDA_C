@@ -31,9 +31,13 @@ void printData(double *in, const int size)
 
 __global__ void double_shfl_wrap(double *d_out, double *d_in, int const offset)
 {
-	double value = d_in[threadIdx.x];
-	value = __shfl(value, threadIdx.x + offset, BDIMX);
-	d_out[threadIdx.x] = value;
+	int *inptr = (int *)d_in;
+	int *outptr = (int *)d_out;
+
+	// Shuffle first half of the double
+	outptr[2 * threadIdx.x] = __shfl(inptr[2 * threadIdx.x], threadIdx.x + offset, BDIMX);
+	// Shuffle second half of the double
+	outptr[2 * threadIdx.x + 1] = __shfl(inptr[2 * threadIdx.x + 1], threadIdx.x + offset, BDIMX);
 }
 
 int main(int argc, char **argv)
