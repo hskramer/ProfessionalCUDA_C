@@ -169,6 +169,7 @@ int main(int argc, char **argv)
 	printf_s("%s  at ", argv[0]);
 	printf_s("device %d: %s ", dev, devProp.name);
 	checkCuda(cudaSetDevice(dev));
+	
 
 	//checkCuda(cudaDeviceSetSharedMemConfig(cudaSharedMemBankSizeEightByte));
 
